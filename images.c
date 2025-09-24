@@ -4,6 +4,10 @@
 BITMAP *buffer = NULL;
 
 
+//The below function has basically been copypasted
+//from YURINKA, the previous project, just to test blitting.
+//This will only be used on "cinematic" sequences:
+
 void load_blit(const char *image_path, int dst_x, int dst_y) {
     // Load the new image from the specified path
     BITMAP *image = load_pcx(image_path, NULL);
