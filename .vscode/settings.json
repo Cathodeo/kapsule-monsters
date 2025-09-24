@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.rgbasm": "gbz80",
+        "*.rgbinc": "gbz80",
+        "allegro.h": "c",
+        "format": "c"
+    }
+}
