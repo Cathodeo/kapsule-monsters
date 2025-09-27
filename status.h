@@ -2,10 +2,12 @@
 #define STATUS_H
 
 typedef struct {
+    int id; 
     char name[16];
-    int id;  
+     
 
 } Status;
 
+extern const Status ALL_STATUS[];
 
 #endif

@@ -6,8 +6,9 @@ typedef struct {
 
     int id;
     char name[16];
-    int strong_to[10];
-    int weak_to[10];
+    int resistance[10];
+    int physical;
+
 
 } Type;
 
@@ -18,6 +19,7 @@ typedef struct {
 
 } Archetype;
 
-
+extern const Type ALL_TYPES[];
+extern const Archetype ALL_ARCHETYPES[];
 
 #endif

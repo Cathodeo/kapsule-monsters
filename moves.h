@@ -21,6 +21,6 @@ typedef struct {
 } Move;
 
 
-const Move ALL_MOVES[];
+extern const Move ALL_MOVES[];
 
 #endif

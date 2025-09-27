@@ -1,6 +1,7 @@
 #ifndef MONSTERS_H
 #define MONSTERS_H
 
+#include <stdio.h>
 #include "moves.h"
 #include "typing.h"
 
@@ -26,13 +27,26 @@ typedef struct {
 //with a particular moveset and hp value
 
 typedef struct {
+    int dex_id;
     int hp;
+    int stamina;
     int status;
     int debuff[6];
     int affinity;
     Move moves[4]; 
 } Partymon;
 
+extern const Species ALL_SPECIES[];
 
+
+const Species* get_species_by_id(int id);
+int get_hp_from_dex(int dex_id);
+int get_ata_from_dex(int dex_id);
+int get_def_from_dex(int dex_id);
+int get_mag_from_dex(int dex_id);
+int get_wis_from_dex(int dex_id);
+int get_spe_from_dex(int dex_id);
+int get_arch_from_dex(int dex_id);
+int get_type_from_dex(int dex_id);
 
 #endif

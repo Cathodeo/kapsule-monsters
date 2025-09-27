@@ -1,19 +1,5 @@
 #include "moves.h"
 
-    /**
-    int id;
-    char name[20];
-    int isdamaging; //0 = non-damaging move
-    int power;
-    int accuracy;
-    int perfacur; //1 = Ignore accuracy checks
-    int element;  //0 = Inherit monster type element (default)
-    int archetype -1 BRAWLER, 2 TANK, 3 NIMBLE, 4 WIZARD, 5 CLERIC, 6 BURSTER;
-    int secondary_effect_chance; //Non-damaging moves = 100
-    int status_inflicted; 
-    int special_effect; //Effects too specific to include on the struct
-    //Like vamp, heal statuses, etc */
-
 
 
 const Move ALL_MOVES[] = {
