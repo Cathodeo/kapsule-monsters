@@ -1,5 +1,5 @@
 #include "moves.h"
-
+#define NUM_MOVES (sizeof(ALL_MOVES) / sizeof(ALL_MOVES[0]))
 
 
 const Move ALL_MOVES[] = {
@@ -12,3 +12,48 @@ const Move ALL_MOVES[] = {
 {7, "Frostbite", 1, 65, 85, 0, 5, 4, 35, 7, 0}
 
 };
+
+const Move* get_move_by_id(int id){
+
+     {
+    for (size_t i = 0; i < NUM_MOVES; i++) {
+        if (ALL_MOVES[i].id == id)
+            return &ALL_MOVES[i]; // return pointer to the struct
+    }
+    return 0; // not found
+}
+
+}
+
+
+int get_power_from_move(int move_id)
+{
+    const Move* m = get_move_by_id(move_id);
+    if (m != NULL) {
+    printf("DEBUG: Species name: %m\n", m->name);
+    return m->power;}
+    }
+
+int get_accuracy_from_move(int move_id)
+{
+    const Move* m = get_move_by_id(move_id);
+    if (m != NULL) {
+    printf("DEBUG: Species name: %m\n", m->name);
+    return m->accuracy;}
+    }
+
+int get_perfacur_from_move(int move_id)
+{
+    const Move* m = get_move_by_id(move_id);
+    if (m != NULL) {
+    printf("DEBUG: Species name: %m\n", m->name);
+    return m->perfacur;}
+    }
+
+int get_type_from_move(int move_id)
+{
+    const Move* m = get_move_by_id(move_id);
+    if (m != NULL) {
+    printf("DEBUG: Species name: %m\n", m->name);
+    return m->element;}
+    }

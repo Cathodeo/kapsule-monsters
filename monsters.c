@@ -64,6 +64,16 @@ int get_wis_from_dex(int dex_id)
     return s->wis;}
     }
 
+int get_spe_from_dex(int dex_id)
+{
+    const Species* s = get_species_by_id(dex_id);
+    if (s != NULL) {
+    printf("DEBUG: Species name: %s\n", s->name);
+    return s->spe;}
+   
+}
+
+
     int get_arch_from_dex(int dex_id)
 {
     const Species* s = get_species_by_id(dex_id);
@@ -82,8 +92,23 @@ int get_wis_from_dex(int dex_id)
 
     }
 
+    int get_base_move_from_dex(int dex_id)
+    {
+    const Species* s = get_species_by_id(dex_id);
+    if (s != NULL) {
+    printf("DEBUG: Species name: %s\n", s->name);
+    return s->moves[0];} 
+    }
 
-
+    int get_random_move_from_dex(int dex_id)
+    {
+    const Species* s = get_species_by_id(dex_id);
+    if (s != NULL) {
+    printf("DEBUG: Species name: %s\n", s->name);
+    //Hardcoded to 1 for simplicity, should be
+    //random between 1 and 2
+    return s->moves[1];}   
+    }
 
 
 

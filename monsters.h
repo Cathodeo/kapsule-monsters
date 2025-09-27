@@ -18,7 +18,7 @@ typedef struct {
     int stage;
     int archetype;      // brawler, tank, nimble, etc.
     int type;           // metal, robot, radio, etc.
-    Move moves[4]; //Note: The first move is already builtin, 
+    int moves[4]; //Note: The first move is already builtin, 
     //A second random one to pick from the remaining three upon leveling
     //up the affinity
 } Species;
@@ -33,7 +33,7 @@ typedef struct {
     int status;
     int debuff[6];
     int affinity;
-    Move moves[4]; 
+    int moves[4]; 
 } Partymon;
 
 extern const Species ALL_SPECIES[];
@@ -48,5 +48,7 @@ int get_wis_from_dex(int dex_id);
 int get_spe_from_dex(int dex_id);
 int get_arch_from_dex(int dex_id);
 int get_type_from_dex(int dex_id);
+int get_base_move_from_dex(int dex_id);
+int get_random_move_from_dex(int dex_id);
 
 #endif

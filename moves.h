@@ -3,6 +3,7 @@
 
 #include "typing.h"
 #include "status.h"
+#include <stdio.h>
 
 
 typedef struct {
@@ -22,5 +23,10 @@ typedef struct {
 
 
 extern const Move ALL_MOVES[];
+const Move* get_move_by_id(int id);
+int get_power_from_move(int move_id);
+int get_accuracy_from_move(int move_id);
+int get_type_from_move(int move_id);
+int get_perfacur_from_move(int move_id);
 
 #endif
