@@ -15,6 +15,12 @@ Partymon Monsters_Foe[1];
 for simplicity, but actual gameplay would add an stat
 boost on everything but HP, up to 20% player level and 30% affinity*/
 
+void wait_press()
+{
+    while (!key[KEY_ENTER])
+    {rest(16);}
+}
+
 void init_battle(int self_dex, int foe_dex) {
     // Initialize player’s first monster
     Monsters_Self[0].hp = get_hp_from_dex(self_dex);
@@ -103,19 +109,46 @@ void battle_flow(int move_choice, int speed_check_result) {
 
     int self_turn_finished = 0;
     int foe_turn_finished = 0;
+    int damage = 0;
+    int move_id_self = Monsters_Self[0].moves[move_choice];
+    int stab = 0;
+
+    if (get_arch_from_dex(Monsters_Self[0].dex_id) == get_arch_from_move(move_id_self)) stab = 1;
     
     if (speed_check_result == 1) goto self_turn;
     else goto foe_turn;
 
-    
 
     self_turn:
+
+        //Apply special effects (unimplemented yet)
+        
+        //Display message - Ally used
+        printf("DEBUG: Ally monster used: %s\n", get_name_from_move(move_id_self));
+        
+        damage = 
+        
+        calc_damage(get_ata_from_dex(Monsters_Self[0].dex_id),
+        get_def_from_dex(Monsters_Foe[0].dex_id),
+        get_power_from_move(move_id_self), 
+        stab, 
+        calc_type_mod(get_type_from_move(move_id_self), get_type_from_dex(Monsters_Foe[0].dex_id)), 0.85);
+
+        //Display animation - Unimplemented 
+
+        //Display message - Damage dealt
+        
+
+        if (damage) printf("DEBUG: Damage dealt: %d\n", damage);
+        else printf("DEBUG: No damage\n");
 
         self_turn_finished = 1;
         if (foe_turn_finished == 0) goto foe_turn;
 
 
     foe_turn:
+
+        //Display message - Ally used
 
         foe_turn_finished = 1;
         if (self_turn_finished == 0) goto self_turn;

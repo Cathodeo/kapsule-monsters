@@ -24,9 +24,11 @@ typedef struct {
 
 extern const Move ALL_MOVES[];
 const Move* get_move_by_id(int id);
+char* get_name_from_move(int move_id);
 int get_power_from_move(int move_id);
 int get_accuracy_from_move(int move_id);
 int get_type_from_move(int move_id);
+int get_arch_from_move(int move_id);
 int get_perfacur_from_move(int move_id);
 
 #endif

@@ -21,6 +21,14 @@ const Species* get_species_by_id(int id) {
     return 0; // not found
 }
 
+char* get_name_from_dex(int dex_id)
+{
+    const Species* s = get_species_by_id(dex_id);
+    if (s != NULL) {
+    printf("DEBUG: Species name: %s\n", s->name);
+    return s->name;}
+
+    }
 
 int get_hp_from_dex(int dex_id)
 {

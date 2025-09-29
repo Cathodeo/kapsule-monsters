@@ -25,6 +25,14 @@ const Move* get_move_by_id(int id){
 
 }
 
+char* get_name_from_move(int move_id)
+{
+    const Move* m = get_move_by_id(move_id);
+    if (m != NULL) {
+    printf("DEBUG: Species name: %m\n", m->name);
+    return m->name;}
+    }
+
 
 int get_power_from_move(int move_id)
 {
@@ -56,4 +64,12 @@ int get_type_from_move(int move_id)
     if (m != NULL) {
     printf("DEBUG: Species name: %m\n", m->name);
     return m->element;}
+    }
+
+int get_arch_from_move(int move_id)
+{
+    const Move* m = get_move_by_id(move_id);
+    if (m != NULL) {
+    printf("DEBUG: Species name: %m\n", m->name);
+    return m->archetype;}
     }

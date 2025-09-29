@@ -40,6 +40,7 @@ extern const Species ALL_SPECIES[];
 
 
 const Species* get_species_by_id(int id);
+char* get_name_from_dex(int dex_id);
 int get_hp_from_dex(int dex_id);
 int get_ata_from_dex(int dex_id);
 int get_def_from_dex(int dex_id);
