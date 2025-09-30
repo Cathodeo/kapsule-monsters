@@ -105,55 +105,119 @@ int speed_check()
     else return 0;
 }
 
-void battle_flow(int move_choice, int speed_check_result) {
+int battle_flow(int move_choice, int speed_check_result) {
+    int damage, stab;
 
-    int self_turn_finished = 0;
-    int foe_turn_finished = 0;
-    int damage = 0;
     int move_id_self = Monsters_Self[0].moves[move_choice];
-    int stab = 0;
+    int foe_choice = rand() % 2;
+    int move_id_foe = Monsters_Foe[0].moves[foe_choice];
 
-    if (get_arch_from_dex(Monsters_Self[0].dex_id) == get_arch_from_move(move_id_self)) stab = 1;
-    
-    if (speed_check_result == 1) goto self_turn;
-    else goto foe_turn;
+    // Determine turn order: 1 = self first, 0 = foe first
+    int self_first = (speed_check_result == 1);
 
-
-    self_turn:
-
-        //Apply special effects (unimplemented yet)
-        
-        //Display message - Ally used
+    // --- First turn ---
+    if (self_first) {
+        // Self turn
+        stab = (get_arch_from_dex(Monsters_Self[0].dex_id) == get_arch_from_move(move_id_self));
         printf("DEBUG: Ally monster used: %s\n", get_name_from_move(move_id_self));
-        
-        damage = 
-        
-        calc_damage(get_ata_from_dex(Monsters_Self[0].dex_id),
-        get_def_from_dex(Monsters_Foe[0].dex_id),
-        get_power_from_move(move_id_self), 
-        stab, 
-        calc_type_mod(get_type_from_move(move_id_self), get_type_from_dex(Monsters_Foe[0].dex_id)), 0.85);
 
-        //Display animation - Unimplemented 
+        damage = calc_damage(
+            get_ata_from_dex(Monsters_Self[0].dex_id),
+            get_def_from_dex(Monsters_Foe[0].dex_id),
+            get_power_from_move(move_id_self),
+            stab,
+            calc_type_mod(get_type_from_move(move_id_self), get_type_from_dex(Monsters_Foe[0].dex_id)),
+            0.85
+        );
 
-        //Display message - Damage dealt
-        
-
+        Monsters_Foe[0].hp -= damage;
         if (damage) printf("DEBUG: Damage dealt: %d\n", damage);
         else printf("DEBUG: No damage\n");
 
-        self_turn_finished = 1;
-        if (foe_turn_finished == 0) goto foe_turn;
+        if (Monsters_Foe[0].hp <= 0) {
+            Monsters_Foe[0].hp = 0;
+            printf("The foe monster has fainted!\n");
+            return 1;
+        }
+        printf("DEBUG: Foe health remaining: %d\n", Monsters_Foe[0].hp);
+    } else {
+        // Foe turn
+        stab = (get_arch_from_dex(Monsters_Foe[0].dex_id) == get_arch_from_move(move_id_foe));
+        printf("DEBUG: Foe monster used: %s\n", get_name_from_move(move_id_foe));
 
+        damage = calc_damage(
+            get_ata_from_dex(Monsters_Foe[0].dex_id),
+            get_def_from_dex(Monsters_Self[0].dex_id),
+            get_power_from_move(move_id_foe),
+            stab,
+            calc_type_mod(get_type_from_move(move_id_foe), get_type_from_dex(Monsters_Self[0].dex_id)),
+            0.85
+        );
 
-    foe_turn:
+        Monsters_Self[0].hp -= damage;
+        if (damage) printf("DEBUG: Damage dealt: %d\n", damage);
+        else printf("DEBUG: No damage\n");
 
-        //Display message - Ally used
+        if (Monsters_Self[0].hp <= 0) {
+            Monsters_Self[0].hp = 0;
+            printf("The ally monster has fainted!\n");
+            return 1;
+        }
+        printf("DEBUG: Ally health remaining: %d\n", Monsters_Self[0].hp);
+    }
 
-        foe_turn_finished = 1;
-        if (self_turn_finished == 0) goto self_turn;
+    // --- Second turn ---
+    if (self_first) {
+        // Foe turn
+        stab = (get_arch_from_dex(Monsters_Foe[0].dex_id) == get_arch_from_move(move_id_foe));
+        printf("DEBUG: Foe monster used: %s\n", get_name_from_move(move_id_foe));
 
+        damage = calc_damage(
+            get_ata_from_dex(Monsters_Foe[0].dex_id),
+            get_def_from_dex(Monsters_Self[0].dex_id),
+            get_power_from_move(move_id_foe),
+            stab,
+            calc_type_mod(get_type_from_move(move_id_foe), get_type_from_dex(Monsters_Self[0].dex_id)),
+            0.85
+        );
 
+        Monsters_Self[0].hp -= damage;
+        if (damage) printf("DEBUG: Damage dealt: %d\n", damage);
+        else printf("DEBUG: No damage\n");
+
+        if (Monsters_Self[0].hp <= 0) {
+            Monsters_Self[0].hp = 0;
+            printf("The ally monster has fainted!\n");
+            return 1;
+        }
+        printf("DEBUG: Ally health remaining: %d\n", Monsters_Self[0].hp);
+    } else {
+        // Self turn
+        stab = (get_arch_from_dex(Monsters_Self[0].dex_id) == get_arch_from_move(move_id_self));
+        printf("DEBUG: Ally monster used: %s\n", get_name_from_move(move_id_self));
+
+        damage = calc_damage(
+            get_ata_from_dex(Monsters_Self[0].dex_id),
+            get_def_from_dex(Monsters_Foe[0].dex_id),
+            get_power_from_move(move_id_self),
+            stab,
+            calc_type_mod(get_type_from_move(move_id_self), get_type_from_dex(Monsters_Foe[0].dex_id)),
+            0.85
+        );
+
+        Monsters_Foe[0].hp -= damage;
+        if (damage) printf("DEBUG: Damage dealt: %d\n", damage);
+        else printf("DEBUG: No damage\n");
+
+        if (Monsters_Foe[0].hp <= 0) {
+            Monsters_Foe[0].hp = 0;
+            printf("The foe monster has fainted!\n");
+            return 1;
+        }
+        printf("DEBUG: Foe health remaining: %d\n", Monsters_Foe[0].hp);
+    }
+
+    // Battle continues
+    return 0;
 }
-
 

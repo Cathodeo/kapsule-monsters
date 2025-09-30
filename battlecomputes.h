@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <allegro.h>
+#include <time.h>
 #include "typing.h"
 #include "moves.h"
 #include "monsters.h"
@@ -22,7 +24,7 @@ float calc_type_mod(int type_self, int type_foe);
 int calc_damage(int attack, int defense, int power, int stab, 
                    float type_mod, float rnd);
 int speed_check();
-void battle_flow(int move_choice, int speed_check_result);
+int battle_flow(int move_choice, int speed_check_result);
 
                    
 #endif 

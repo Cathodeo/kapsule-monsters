@@ -8,7 +8,7 @@ const Species ALL_SPECIES[] = {
     {5, 6, 7, 7}
     },
     {40, "Mogshka", 45, 80, 45, 35, 110, 85, 3, 1, 2, 1,
-    {1, 2, 2, 3}
+    {1, 2, 3, 3}
     }
 };
 
@@ -25,7 +25,6 @@ char* get_name_from_dex(int dex_id)
 {
     const Species* s = get_species_by_id(dex_id);
     if (s != NULL) {
-    printf("DEBUG: Species name: %s\n", s->name);
     return s->name;}
 
     }
@@ -34,7 +33,6 @@ int get_hp_from_dex(int dex_id)
 {
     const Species* s = get_species_by_id(dex_id);
     if (s != NULL) {
-    printf("DEBUG: Species name: %s\n", s->name);
     return s->hp;}
 
     }
@@ -43,7 +41,6 @@ int get_ata_from_dex(int dex_id)
 {
     const Species* s = get_species_by_id(dex_id);
     if (s != NULL) {
-    printf("DEBUG: Species name: %s\n", s->name);
     return s->ata;}
 
     }
@@ -52,7 +49,6 @@ int get_def_from_dex(int dex_id)
 {
     const Species* s = get_species_by_id(dex_id);
     if (s != NULL) {
-    printf("DEBUG: Species name: %s\n", s->name);
     return s->def;}
 
     }
@@ -60,7 +56,6 @@ int get_mag_from_dex(int dex_id)
 {
     const Species* s = get_species_by_id(dex_id);
     if (s != NULL) {
-    printf("DEBUG: Species name: %s\n", s->name);
     return s->mag;}
     }
 
@@ -68,7 +63,6 @@ int get_wis_from_dex(int dex_id)
 {
     const Species* s = get_species_by_id(dex_id);
     if (s != NULL) {
-    printf("DEBUG: Species name: %s\n", s->name);
     return s->wis;}
     }
 
@@ -76,7 +70,6 @@ int get_spe_from_dex(int dex_id)
 {
     const Species* s = get_species_by_id(dex_id);
     if (s != NULL) {
-    printf("DEBUG: Species name: %s\n", s->name);
     return s->spe;}
    
 }
@@ -86,7 +79,6 @@ int get_spe_from_dex(int dex_id)
 {
     const Species* s = get_species_by_id(dex_id);
     if (s != NULL) {
-    printf("DEBUG: Species name: %s\n", s->name);
     return s->archetype;}
 
     }
@@ -95,7 +87,6 @@ int get_spe_from_dex(int dex_id)
 {
     const Species* s = get_species_by_id(dex_id);
     if (s != NULL) {
-    printf("DEBUG: Species name: %s\n", s->name);
     return s->type;}
 
     }
@@ -104,7 +95,6 @@ int get_spe_from_dex(int dex_id)
     {
     const Species* s = get_species_by_id(dex_id);
     if (s != NULL) {
-    printf("DEBUG: Species name: %s\n", s->name);
     return s->moves[0];} 
     }
 
@@ -112,10 +102,9 @@ int get_spe_from_dex(int dex_id)
     {
     const Species* s = get_species_by_id(dex_id);
     if (s != NULL) {
-    printf("DEBUG: Species name: %s\n", s->name);
-    //Hardcoded to 1 for simplicity, should be
+    //Hardcoded to 2 for simplicity, should be
     //random between 1 and 2
-    return s->moves[1];}   
+    return s->moves[2];}   
     }
 
 

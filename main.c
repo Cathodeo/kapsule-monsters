@@ -6,7 +6,7 @@
 #include "overworldmap.h"
 #include "events.h"
 #include "charas.h"
-
+#include "battlecomputes.h"
 //DEBUG: to remove or move to another file
 
 
@@ -44,32 +44,24 @@ if (set_gfx_mode(GFX_XWINDOWS, 640, 480, 0, 0) != 0) {
     return 1;
     }
 
- /* Load + slice */
-    err = load_and_cache_sheet("CHARAS.PCX", CHAR_COUNT);
-    if (err) {
-        allegro_message("load_and_cache_sheet failed (%d)", err);
-        return 2;
+ 
+int c;
+init_battle(40, 38);
+
+while (1) {
+    c = readkey();   // waits for key press
+    switch (c >> 8) { // high byte is the key code
+        case KEY_1:
+            battle_flow(0, speed_check());
+            break;
+        case KEY_2:
+            battle_flow(1, speed_check());
+            break;
+        case KEY_ESC:
+            return 0;
     }
-
- buffer = create_bitmap(SCREEN_W, SCREEN_H);
-    if (!buffer) {
-        allegro_message("Failed to create buffer!");
-        return -1;
-    }
-
-     init_map("TESTMAP.PCX");
-
-      int tick = 0;
-
-while (!key[KEY_ESC]) {
-
-
-   
-
-
-    
-    rest(16); // ~60 FPS
 }
+
 
 allegro_exit(); // Clean up Allegro
 return 0; // Ensure the function ends correctly
